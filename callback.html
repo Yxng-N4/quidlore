@@ -1,0 +1,12 @@
+<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Quidlore sign-in</title><link rel="stylesheet" href="style.css"></head><body><main>
+<header><div class="logo">Q</div><a href="./">Quidlore</a></header>
+<h1 id="h">Connecting…</h1><p class="muted" id="m"></p>
+<div class="card" id="c" hidden><code id="code" style="word-break:break-all"></code></div>
+<script>
+// OAuth redirect target for the Quidlore publishing tool. Shows the one-time code; nothing is sent anywhere.
+const q=new URLSearchParams(location.search);
+const code=q.get('code'), err=q.get('error')||q.get('error_description');
+if(code){document.getElementById('h').textContent='Signed in';document.getElementById('m').textContent='Copy this one-time code back into the Quidlore publisher. It expires in a few minutes.';document.getElementById('code').textContent=code;document.getElementById('c').hidden=false;}
+else{document.getElementById('h').textContent='Sign-in not completed';document.getElementById('m').textContent=err||'No authorisation code was returned.';}
+history.replaceState(null,'',location.pathname);
+</script></main></body></html>
